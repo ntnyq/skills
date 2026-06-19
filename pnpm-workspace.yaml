@@ -1,0 +1,6 @@
+allowBuilds:
+  unrs-resolver: true
+
+ignoreWorkspaceRootCheck: true
+packageManagerStrict: false
+shellEmulator: true
