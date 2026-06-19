@@ -2,5 +2,6 @@ allowBuilds:
   unrs-resolver: true
 
 ignoreWorkspaceRootCheck: true
+minimumReleaseAge: 0
 packageManagerStrict: false
 shellEmulator: true
