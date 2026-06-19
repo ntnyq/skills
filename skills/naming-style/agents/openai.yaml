@@ -1,0 +1,4 @@
+interface:
+  display_name: Naming Style
+  short_description: Name variables constants and types
+  default_prompt: 'Use $naming-style to name variables, constants, functions, and types consistently.'

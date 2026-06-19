@@ -1,0 +1,4 @@
+interface:
+  display_name: Vue SFC Style
+  short_description: Apply ntnyq Vue SFC coding standards
+  default_prompt: Use $vue-sfc-style to write or review Vue single-file components.

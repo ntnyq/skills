@@ -1,0 +1,4 @@
+interface:
+  display_name: Vue App
+  short_description: "Build Vue apps in ntnyq's house style"
+  default_prompt: Use $vue-app to build or refine a Vue application in this repository.

@@ -1,0 +1,4 @@
+interface:
+  display_name: Project Structure
+  short_description: Organize projects with ntnyq defaults
+  default_prompt: 'Use $project-structure to organize files, modules, and directories in this project.'

@@ -1,0 +1,4 @@
+interface:
+  display_name: TypeScript Style
+  short_description: Apply ntnyq TypeScript coding standards
+  default_prompt: Use $typescript-style to write or review TypeScript code for this project.

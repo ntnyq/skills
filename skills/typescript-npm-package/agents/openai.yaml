@@ -1,0 +1,4 @@
+interface:
+  display_name: TypeScript NPM Package
+  short_description: Create TS packages with ntnyq defaults
+  default_prompt: Use $typescript-npm-package to create or maintain a TypeScript npm package.
