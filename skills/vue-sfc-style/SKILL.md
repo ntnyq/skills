@@ -19,6 +19,7 @@ Use this skill for `.vue` component work. Prefer readable component contracts, t
 ## Props, Emits, Models
 
 - Type props and emits with object/tuple syntax.
+- Name the component props type `Props`; do not include the component name, such as `AppProps`.
 - Use `modelValue`/`defineModel` for two-way component state only when the parent truly owns the value.
 - Use events for user intent (`submit`, `reset`, `delete`, `applyPreset`) rather than leaking DOM details.
 - Keep prop names domain-specific and avoid boolean prop pairs that can conflict.
@@ -35,6 +36,7 @@ Use this skill for `.vue` component work. Prefer readable component contracts, t
 ## Template Style
 
 - Keep templates declarative and scan-friendly.
+- Reference props directly by name in templates, such as `foobar`, without a `props.` prefix like `props.foobar`.
 - Prefer `v-if`/`v-else` states that show empty, loading, error, and success clearly.
 - Use stable keys, usually domain IDs.
 - Keep slot forwarding and dynamic slots typed and localized.
@@ -45,6 +47,7 @@ Use this skill for `.vue` component work. Prefer readable component contracts, t
 ## Styling
 
 - Prefer the repository's existing styling system: UnoCSS, Tailwind CSS, Nuxt UI `ui` props, scoped CSS, or local design tokens.
+- When UnoCSS or Tailwind CSS is installed, prefer atomic utility classes over writing styles in a `<style>` block.
 - Keep class lists organized by layout, spacing, size, color, and state according to the formatter/linter.
 - Avoid component-local CSS when utilities or existing primitives express the design more directly.
 - Add stable dimensions for fixed-format controls, grids, cards, canvas/SVG areas, previews, and toolbars.
