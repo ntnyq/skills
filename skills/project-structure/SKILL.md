@@ -7,12 +7,26 @@ description: Organize files and directories in ntnyq's preferred project structu
 
 Use this skill when deciding where files belong or shaping a new project. Prefer the current repository's structure first; introduce new folders only when they clarify ownership or match an established local pattern.
 
-## First Pass
+**Core constraint:** Put code near its narrowest real owner and introduce a new
+structural convention only when it clarifies ownership or matches the repository.
 
-1. Inspect `package.json`, `pnpm-workspace.yaml`, config files, and the top-level directory tree.
-2. Classify the project: TypeScript package, Vue/Vite app, Nuxt app, WXT/browser extension, monorepo, docs site, or business app.
-3. Look at sibling folders before creating a new convention.
-4. Keep related implementation, types, tests, and fixtures close when the repo already does so.
+## Scope
+
+- Apply this skill to file placement, directory layout, workspace boundaries,
+  module ownership, and deliberate file moves.
+- Keep code-level style and product behavior outside this skill; use framework
+  conventions to inform placement without redesigning the application by default.
+
+## Workflow
+
+- [ ] Inspect `package.json`, workspace and framework config, the top-level tree,
+      and sibling folders.
+- [ ] Classify the project and identify the narrowest owner for each affected file.
+- [ ] Choose the smallest layout change that fits an existing convention or
+      establishes a clearly justified boundary.
+- [ ] Update imports, exports, routes, auto-import assumptions, tests, and config
+      paths affected by the move.
+- [ ] Run the delivery checks for every changed boundary.
 
 ## TypeScript Package Layout
 
@@ -112,16 +126,22 @@ src/
 
 ## Placement Rules
 
-- Put code near the narrowest owner that needs it.
-- Promote from feature-local to shared only after a second real caller appears.
 - Keep framework-agnostic utilities out of component folders.
 - Keep generated output such as `dist`, `.nuxt`, `.output`, and `.wxt` out of source decisions.
-- Avoid catch-all folders until there is a clear category. If everything is in `utils`, the structure is not helping.
 
-## Verification
+## Anti-Patterns
+
+- Creating speculative folders, layers, or shared modules before they have real
+  contents or a second caller.
+- Moving unrelated files to make a targeted structural change look symmetrical.
+- Using barrels or catch-all directories to hide unclear ownership.
+
+## Delivery Check
 
 After moving files, run the relevant checks:
 
+- Confirm every affected file has one clear owner and no imports still reference
+  the old location.
 - `pnpm lint`
 - `pnpm typecheck`
 - `pnpm test`

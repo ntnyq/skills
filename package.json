@@ -24,7 +24,7 @@
   "scripts": {
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "lint": "oxlint",
+    "lint": "oxlint --no-error-on-unmatched-pattern",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "typescript": "^7.0.2"
   },
   "nano-staged": {
-    "*.{js,ts,mjs,tsx}": "oxlint --fix",
+    "*.{js,ts,mjs,tsx}": "oxlint --fix --no-error-on-unmatched-pattern",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   }
 }

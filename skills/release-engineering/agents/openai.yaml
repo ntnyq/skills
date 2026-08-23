@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Release Engineering'
+  short_description: 'Harden and verify package release workflows'
+  default_prompt: 'Use $release-engineering to design or verify a safe package release workflow.'

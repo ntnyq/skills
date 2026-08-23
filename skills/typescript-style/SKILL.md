@@ -7,6 +7,27 @@ description: Apply ntnyq's TypeScript coding standards while writing, refactorin
 
 Use this skill to make TypeScript code fit ntnyq's personal style: strict, small, explicit, ESM-first, and easy to verify.
 
+**Core constraint:** Preserve runtime behavior at typed and external boundaries;
+do not silence uncertainty with assertions or unrelated refactors.
+
+## Scope
+
+- Apply this skill to TypeScript implementation, type design, module cohesion,
+  error handling, and code-level review.
+- Keep directory layout, package publication, and Vue template conventions in
+  their dedicated skills unless they directly affect the TypeScript change.
+
+## Workflow
+
+- [ ] Inspect nearby code, configured tooling, public APIs, and external input
+      boundaries before editing.
+- [ ] State the behavior and invariants that must remain true, including failure
+      behavior and type-level contracts.
+- [ ] Implement the smallest cohesive change with explicit boundaries and
+      locally inferred types.
+- [ ] Review errors, side effects, exports, and assertions, then run the delivery
+      checks appropriate to the changed surface.
+
 ## Core Rules
 
 - Follow existing local conventions before applying generic preferences.
@@ -48,7 +69,16 @@ Use this skill to make TypeScript code fit ntnyq's personal style: strict, small
 - Do not manually fight generated formatting or import ordering.
 - Prefer `pnpm` scripts already present in `package.json`.
 
-## Verification
+## Anti-Patterns
+
+- Using `any`, casts, non-null assertions, or ignored diagnostics merely to make
+  the checker pass.
+- Mixing a focused behavior change with broad renaming, module movement, or
+  formatting cleanup.
+- Catching an error without preserving context, surfacing failure, or explicitly
+  defining best-effort behavior.
+
+## Delivery Check
 
 After non-trivial changes, run the smallest relevant set:
 
@@ -56,3 +86,5 @@ After non-trivial changes, run the smallest relevant set:
 - `pnpm typecheck`
 - `pnpm test`
 - `pnpm build` when emitted output or package boundaries changed.
+- Confirm public types, boundary validation, and failure behavior match the
+  intended runtime semantics.

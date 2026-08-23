@@ -7,11 +7,28 @@ description: Apply ntnyq's naming conventions for variables, constants, function
 
 Use this skill when choosing, reviewing, or refactoring names. Prefer names that reveal domain intent and match nearby code over rigid global rules.
 
-## First Pass
+**Core constraint:** Preserve domain meaning, nearby conventions, and public API
+stability; a naming task does not authorize an unrelated rename or breaking
+change.
 
-1. Inspect nearby files before renaming. Local convention wins.
-2. Check whether the name is public API, internal implementation, test-only, UI-only, or generated.
-3. Preserve exported names unless the user explicitly wants a breaking change.
+## Scope
+
+- Apply this skill to identifiers, file names, exported symbols, and deliberate
+  rename work.
+- Keep module placement, API behavior, and implementation architecture outside
+  this skill unless they directly determine the name.
+
+## Workflow
+
+- [ ] Inspect nearby files and vocabulary before choosing or changing a name;
+      local convention wins.
+- [ ] Classify the symbol as public API, internal implementation, test-only,
+      UI-only, or generated.
+- [ ] Choose a domain-specific name with the appropriate verb, boolean prefix,
+      type suffix, casing, and file/export relationship.
+- [ ] For renames, update every in-scope reference and inspect the public API
+      impact before applying the change.
+- [ ] Run the delivery checks relevant to the affected surface.
 
 ## Variables And Functions
 
@@ -62,7 +79,13 @@ Use this skill when choosing, reviewing, or refactoring names. Prefer names that
 - Prefer named exports. Default exports should follow framework or tooling conventions.
 - Keep public names stable, clear, and searchable.
 
-## Renaming Discipline
+## Anti-Patterns
+
+- Imposing a new naming system when nearby code already uses a coherent one.
+- Renaming exported, generated, or protocol-defined symbols as incidental cleanup.
+- Performing a broad vocabulary rewrite during a narrowly scoped change.
+
+## Delivery Check
 
 - Rename all references with tooling when possible.
 - Check tests, docs, snapshots, and export maps after public renames.

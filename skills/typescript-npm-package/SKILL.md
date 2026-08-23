@@ -1,17 +1,33 @@
 ---
 name: typescript-npm-package
-description: Create, modify, review, or release TypeScript npm packages in ntnyq's preferred style. Use for package scaffolding, exports, tsdown builds, declaration output, Vitest tests, package.json metadata, monorepos, or Chinese prompts such as "typescript npm 包开发", "TS 包", "npm package", or "库开发".
+description: Create, modify, review, or prepare TypeScript npm packages in ntnyq's preferred style. Use for package scaffolding, exports, tsdown builds, declaration output, Vitest tests, package.json metadata, monorepos, or Chinese prompts such as "typescript npm 包开发", "TS 包", "npm package", or "库开发". Use release-engineering instead for live publishing, tags, releases, dist-tags, or promotion.
 ---
 
 # TypeScript NPM Package
 
 Use this skill for library/package work intended to be consumed by other projects. Optimize for a small public API, strict types, ESM-first packaging, and predictable release checks.
 
-## First Pass
+**Core constraint:** Treat the public entry points, declarations, metadata, and
+packed artifact as the package contract; source files are implementation details.
 
-1. Inspect `package.json`, `pnpm-workspace.yaml`, `tsconfig*.json`, `tsdown.config.*`, `vitest.config.*`, `eslint.config.*`, `src/`, `tests/`, and existing package folders.
-2. Preserve the repository's package manager, module format, scripts, export shape, and naming style.
-3. If the package belongs to a monorepo, check sibling packages before inventing a new layout.
+## Scope
+
+- Apply this skill to TypeScript package APIs, builds, declarations, metadata,
+  tests, export maps, and package-oriented monorepos.
+- Keep application feature work outside this skill. Use `release-engineering` for
+  live publishing, tags, release creation, dist-tags, and promotion workflows.
+
+## Workflow
+
+- [ ] Inspect package and workspace metadata, TypeScript/build/test config,
+      public entries, tests, and sibling packages.
+- [ ] Define the consumer-facing runtime and type contract before changing the
+      implementation or export map.
+- [ ] Implement the smallest cohesive change while preserving the repository's
+      module format, package manager, scripts, and naming style.
+- [ ] Update tests, declarations, docs, metadata, and build entries that expose
+      or verify the changed contract.
+- [ ] Build and inspect the package, then run the delivery checks.
 
 ## Package Defaults
 
@@ -48,7 +64,14 @@ vitest.config.ts
 
 For multi-entry packages or plugins, mirror the export map with explicit source entries and tests for each public entry.
 
-## Verification
+## Anti-Patterns
+
+- Exporting internal modules because they are convenient to import in tests.
+- Adding a runtime dependency without checking whether a peer, dev dependency,
+  or small local implementation better matches the consumer contract.
+- Publishing, tagging, or changing release channels as incidental package work.
+
+## Delivery Check
 
 Run the repository's release-check equivalent when possible:
 
@@ -58,3 +81,4 @@ Run the repository's release-check equivalent when possible:
 - `pnpm test`
 - `pnpm build`
 - `pnpm pack --dry-run` when package metadata or exports changed.
+- Confirm public runtime entries and exported types resolve from built output.
