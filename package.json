@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@11.21.0",
+  "packageManager": "pnpm@11.22.0",
   "description": "A curated collection of [Agent Skills](https://agentskills.io/home) reflecting [ntnyq](https://github.com/ntnyq)'s preferences.",
   "keywords": [
     "skills"
@@ -24,21 +24,20 @@
   "scripts": {
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "lint": "eslint",
+    "lint": "oxlint",
     "prepare": "husky"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^7.0.0-beta.16",
-    "bumpp": "^12.2.0",
-    "eslint": "^10.8.1",
+    "bumpp": "^12.2.1",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
     "npm-run-all2": "^9.0.3",
-    "oxfmt": "^0.63.0",
-    "typescript": "^6.0.3"
+    "oxfmt": "^0.64.0",
+    "oxlint": "^1.79.0",
+    "typescript": "^7.0.2"
   },
   "nano-staged": {
-    "*.{js,ts,mjs,tsx}": "eslint --fix",
+    "*.{js,ts,mjs,tsx}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   }
 }
