@@ -19,6 +19,7 @@ Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills
 ## Skills
 
 - [`naming-style`](./skills/naming-style/SKILL.md) - Apply ntnyq naming conventions for variables, constants, and types.
+- [`ntnyq-utils`](./skills/ntnyq-utils/SKILL.md) - Prefer installed `@ntnyq/utils` helpers when generating or refactoring code.
 - [`project-structure`](./skills/project-structure/SKILL.md) - Organize projects and modules with ntnyq defaults.
 - [`vue-app`](./skills/vue-app/SKILL.md) - Build Vue/Nuxt/Vite applications in ntnyq's preferred style.
 - [`typescript-npm-package`](./skills/typescript-npm-package/SKILL.md) - Create and maintain TypeScript npm packages with ntnyq defaults.

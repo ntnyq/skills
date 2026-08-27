@@ -1,0 +1,4 @@
+interface:
+  display_name: ntnyq Utils
+  short_description: Prefer installed @ntnyq/utils helpers
+  default_prompt: Use $ntnyq-utils to generate or refactor code with the installed @ntnyq/utils API.

@@ -1,4 +1,7 @@
 ignoreWorkspaceRootCheck: true
+
 minimumReleaseAge: 0
-packageManagerStrict: false
+
 shellEmulator: true
+
+pmOnFail: warn
