@@ -17,6 +17,15 @@ requested user flow complete before introducing new abstractions or tools.
 - Use `vue-sfc-style` for detailed `.vue` contracts, reactivity, templates, and
   styling. Keep published-library concerns outside this skill.
 
+## Focused References
+
+- Read [page architecture](references/page-architecture.md) when building or
+  reviewing route pages, CRUD flows, list/form/detail composables, tabs, or
+  multi-step forms.
+- Read [browser runtime boundaries](references/browser-runtime.md) when using
+  secure-context browser APIs, generating client identifiers, or coordinating
+  runtime logging with user-facing error notifications.
+
 ## Workflow
 
 - [ ] Inspect package, workspace, framework, lint, and TypeScript config plus the
@@ -37,6 +46,9 @@ requested user flow complete before introducing new abstractions or tools.
 - Prefer existing UI systems first. Common local choices include Nuxt UI, Element Plus, UnoCSS, Tailwind CSS, Iconify/Lucide icons, and project-local components.
 - Keep shared logic in composables or utilities only when it is reused or makes the component easier to read.
 - Keep state local until cross-route, cross-component, persistence, or derived-state complexity justifies a store.
+- Keep route pages as composition surfaces. Move reusable reactive workflows and
+  effects to composables and keep pure payload/default-value transformations in
+  utilities.
 
 ## Implementation Style
 

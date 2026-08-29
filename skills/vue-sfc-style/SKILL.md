@@ -42,13 +42,34 @@ state, side effects, and user-visible states explicit and easy to scan.
 
 - Type props and emits with object/tuple syntax.
 - Keep small local prop shapes inline in `defineProps<{ ... }>()`.
+- When a component has three or more props, prefer an `interface Props` above
+  `defineProps<Props>()` so the contract remains easy to scan. Give each prop a
+  concise multiline JSDoc comment that explains its domain meaning.
 - Name a reusable local component props type `Props`; do not include the component
   name, such as `AppProps`. Use `XxxProps` only when exporting the type as part of
   a public API.
+- Spell identifier abbreviations as ordinary words in prop and named-model
+  names: use `userId` and `selectedUserIds`, not `userID` or
+  `selectedUserIDs`. This also produces natural kebab-case template attributes.
+- Declare event tuples directly in `defineEmits<{ ... }>()`; do not create a
+  separate local `Emits` type solely for the macro.
 - Use `modelValue`/`defineModel` for two-way component state only when the parent truly owns the value.
 - Use events for user intent (`submit`, `reset`, `delete`, `applyPreset`) rather than leaking DOM details.
 - Keep prop names domain-specific and avoid boolean prop pairs that can conflict.
 - Use `withDefaults` for stable display defaults instead of scattering fallback expressions in the template.
+
+## Slots And Public Instance APIs
+
+- Declare every named slot with `defineSlots`, including optional slots and slot
+  props. Use `() => VNode[]` for slots without props.
+- Assign the macro result to `slots` when the template needs to test slot
+  presence, then use `slots.default`, `slots.footer`, or bracket access for
+  hyphenated names.
+- Do not use implicit `$props`, `$emit`, `$emits`, or `$slots` in templates.
+  Declare the contract in `<script setup>` and use the declared prop, `emit`, or
+  `slots` binding directly.
+- Use `defineExpose` only for the smallest imperative API a parent genuinely
+  needs, such as refreshing an independently owned panel.
 
 ## Reactivity
 
@@ -72,6 +93,24 @@ state, side effects, and user-visible states explicit and easy to scan.
 - Use project UI components and icon conventions before adding raw markup.
 - Keep accessibility in the component contract: labels, button types, keyboard behavior, focus, and disabled states.
 
+## Dialog And Drawer Components
+
+- Prefer the application's existing command-style alert, confirm, or prompt API
+  for simple confirmations. Create a component when the surface owns a form,
+  list, media editor, fullscreen interaction, or another meaningful UI contract.
+- Prefix independently reusable component symbols with their surface role, such
+  as `DialogResourcePicker` and `DrawerResourcePreview`; avoid suffix forms such
+  as `ResourcePickerDialog`.
+- Inside a dedicated `dialogs/` or `drawers/` directory, omit the redundant role
+  from the filename (`dialogs/ResourcePicker.vue`) while retaining it in the
+  imported component symbol (`DialogResourcePicker`). Outside such a directory,
+  keep the role prefix in both filename and symbol.
+- A component that happens to render a dialog or drawer internally is not
+  automatically a dialog/drawer component; name it for its primary public
+  responsibility.
+- After a component rename, search for the old filename, import symbol, exports,
+  and template tags so no stale reference remains.
+
 ## Styling
 
 - Prefer the repository's existing styling system: UnoCSS, Tailwind CSS, Nuxt UI `ui` props, scoped CSS, or local design tokens.
@@ -79,6 +118,9 @@ state, side effects, and user-visible states explicit and easy to scan.
 - Keep class lists organized by layout, spacing, size, color, and state according to the formatter/linter.
 - Avoid component-local CSS when utilities or existing primitives express the design more directly.
 - Add stable dimensions for fixed-format controls, grids, cards, canvas/SVG areas, previews, and toolbars.
+- When UnoCSS is configured, use the `unocss` skill for utility syntax,
+  extraction, units, shortcuts, and responsive variants. Use `theme-color` for
+  semantic color tokens and light/dark-theme decisions.
 
 ## Anti-Patterns
 

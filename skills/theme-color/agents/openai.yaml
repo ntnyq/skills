@@ -1,0 +1,4 @@
+interface:
+  display_name: Theme Color
+  short_description: Preserve semantic colors across themes
+  default_prompt: Use $theme-color to design or review theme tokens and frontend color usage.

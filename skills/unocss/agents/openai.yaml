@@ -1,0 +1,4 @@
+interface:
+  display_name: UnoCSS
+  short_description: Apply ntnyq UnoCSS conventions
+  default_prompt: Use $unocss to configure or review UnoCSS utilities in this project.

@@ -19,6 +19,7 @@
     "oxfmt",
     "oxfmtrc",
     "oxlint",
+    "rgba",
     "Rollup",
     "tsdown",
     "tsgo",

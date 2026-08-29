@@ -119,6 +119,37 @@ src/
 - Use `vendors/` for wrapped third-party integrations such as chart or graph systems.
 - Keep module-local pages, i18n, components, types, and API code inside the owning module when possible.
 
+## Domain And Shared Boundaries
+
+- Keep a component, composable, constant, or helper inside its owning resource
+  while it has only one real consumer.
+- Promote code to a domain-level `shared/` boundary after at least two resources
+  in that domain share a stable contract. Expose deliberate cross-resource APIs
+  through the domain's public entry instead of deep-importing another resource's
+  internals.
+- Move code to an application-wide `shared/` boundary only when it is stable
+  across domains and contains no business-specific status, wording, or mapping.
+- Put reusable technical systems such as charts, maps, editors, modal engines,
+  or table engines behind a feature, engine, or vendor boundary that matches the
+  repository. Prefer its public entry over copying integration state machines
+  into business modules.
+- Treat the second consumer as evidence for sharing, not as an automatic reason
+  to generalize. The contracts must actually match.
+
+## Resource Module Responsibilities
+
+- Keep route-level views in `pages/` and reusable page bodies, tabs, dialogs,
+  drawers, and business sections in `components/`.
+- Put reactive state, requests, side effects, and route actions in composables;
+  put pure default-value builders, payload transforms, parsers, and formatters in
+  utilities.
+- Put stable finite values, option lists, mappings, storage prefixes, and error
+  codes in constants. Keep page runtime state out of constant modules.
+- Keep local-only types with their resource. Promote a type only when its owning
+  contract is shared, not because the type might be useful someday.
+- Create only the files a resource needs; do not mechanically add empty
+  `components/`, `composables/`, `constants.ts`, `types.ts`, or `utils.ts` files.
+
 ## Browser Extension Layout
 
 - Follow the framework convention first, commonly `entrypoints/`, `components/`, `composables/`, `constants/`, `stores/`, `types/`, and `utils/`.
@@ -127,6 +158,8 @@ src/
 ## Placement Rules
 
 - Keep framework-agnostic utilities out of component folders.
+- Verify auto-import configuration before relying on an import-free example;
+  moving a file into a new directory does not make it auto-importable.
 - Keep generated output such as `dist`, `.nuxt`, `.output`, and `.wxt` out of source decisions.
 
 ## Anti-Patterns

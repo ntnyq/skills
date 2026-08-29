@@ -1,0 +1,4 @@
+interface:
+  display_name: Data Test IDs
+  short_description: Design stable frontend test selectors
+  default_prompt: Use $data-testid to add or review stable data-testid contracts for this UI.

@@ -63,6 +63,33 @@ do not silence uncertainty with assertions or unrelated refactors.
 - Do not silently swallow failures unless the feature is explicitly best-effort.
 - Keep side effects near the boundary and pure logic in testable functions.
 
+## Comments And Documentation
+
+- Add comments for contracts, domain meaning, invariants, and non-obvious flow;
+  do not narrate syntax that the code already makes clear.
+- When a declaration needs JSDoc or TSDoc, use the multiline form even for a
+  single sentence:
+
+  ```ts
+  /**
+   * Resolves the effective configuration for one workspace
+   */
+  ```
+
+- Follow the repository's language and punctuation style. Do not rewrite
+  unrelated comments merely to make their formatting uniform.
+- Document exported APIs whose contract is not obvious and internal helpers
+  that represent a meaningful workflow step or branch.
+- For an exported enum-like `as const` object, document the purpose of the
+  collection and the domain meaning of each member declared directly in that
+  object. Do not repeat comments for members inherited through object spread.
+- When adding documentation to shared type fields, verify the meaning from API
+  contracts, UI labels, validation, tests, constants, and call sites. Leave an
+  uncertain field undocumented instead of guessing or adding filler such as
+  "value", "type", or "status".
+- Reference a finite-value constant from a field comment only after confirming
+  that the constant exists and governs that exact field in the same domain.
+
 ## Formatting And Tooling
 
 - Respect the repo's configured formatter and linter. Common local defaults are `oxfmt`, `oxlint`, `@ntnyq/eslint-config`, `perfectionist`, and strict tsconfig presets.

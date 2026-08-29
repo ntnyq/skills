@@ -1,0 +1,4 @@
+interface:
+  display_name: Element Plus
+  short_description: Apply ntnyq Element Plus conventions
+  default_prompt: Use $element-plus to write or review Element Plus UI code in this Vue project.
